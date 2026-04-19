@@ -1,0 +1,191 @@
+{
+  "info": {
+    "name": "Smart Chatbot Analytics API",
+    "_postman_id": "4af7994b-f620-486f-a2a5-d0ae30b2697a",
+    "description": "Ready-to-import Postman collection for the Smart Multi-User Chatbot with Data Analytics backend.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "health"]
+        }
+      }
+    },
+    {
+      "name": "Register User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"alice@example.com\",\n  \"full_name\": \"Alice Analyst\",\n  \"password\": \"StrongPass123\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/auth/register",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "auth", "register"]
+        }
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"alice@example.com\",\n  \"password\": \"StrongPass123\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/auth/login",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "auth", "login"]
+        }
+      }
+    },
+    {
+      "name": "Upload Dataset",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "name",
+              "value": "sales_data",
+              "type": "text"
+            },
+            {
+              "key": "description",
+              "value": "Quarterly sales records",
+              "type": "text"
+            },
+            {
+              "key": "file",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/datasets/upload",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "datasets", "upload"]
+        }
+      }
+    },
+    {
+      "name": "List Datasets",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/datasets",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "datasets"]
+        }
+      }
+    },
+    {
+      "name": "Send Chat Message",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"message\": \"What are the top performing products?\",\n  \"conversation_id\": null\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/chat/{{datasetId}}/message",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "chat", "{{datasetId}}", "message"]
+        }
+      }
+    },
+    {
+      "name": "List Conversations",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/chat/conversations",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "chat", "conversations"]
+        }
+      }
+    },
+    {
+      "name": "Analytics Overview",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/analytics/overview",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "analytics", "overview"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8000"
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "datasetId",
+      "value": ""
+    }
+  ]
+}
